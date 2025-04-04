@@ -2,7 +2,6 @@ import smtplib
 import sys
 import time
 import random
-from http.client import responses
 
 # DEFINE COLORS
 red = '\33[31m'
@@ -17,16 +16,13 @@ black_background = '\u001b[40m'
 
 def banner():
     print(green + "Initializing program...")
-    time.sleep(3)
     print("setting up SMTLIB...")
-    time.sleep(1)
     print("setting up email...")
-    time.sleep(1)
     print(green + "initializing complete")
-    version = "Email Bomber v2.95"
+    version = "Email Bomber v3.1"
     time.sleep(1)
     print(version)
-    coder = "Noa and Devin"
+    coder = "OΛΠ DEV and typicaldevin the gamer"
 
     print(white + "-------------------------------------------------------------------------" )
 
@@ -56,6 +52,9 @@ class Email_Bomber:
     def __init__(self):
         try:
             self.target = str(input(yellow + 'Enter target email <: '))
+            self.TO_INPUT = str(input(yellow + 'Enter 1 for debug enter 2 for no debugging : '))
+            if self.TO_INPUT == 1:
+                self.TO_TO = str(input(yellow + 'Enter DEBUG Email addres: '))
             self.mode = int(input(yellow + 'Enter BOMB mode (1,2,3,4) // 1:(1000) 2:(500) 3:(250) 4:Custom : '))
             if int(self.mode) > int(4) or int(self.mode) < int(1):
                 print(red + "invalid option")
@@ -144,23 +143,24 @@ class Email_Bomber:
 
         self.FROM = self.fromAddr
         self.PWD = self.fromPwd
-        self.TO = "noa.roesken@stiftsgymnasium.de"
-        self.TO1 = "devin.bakhsh@stiftsgymnasium.de"
 
-        self.MESSAGE_NOA = (f'{self.amount} Mails got sucesfuly Bombarded to {self.target}!')
+        if self.TO_INPUT == "1":
 
-        self.smtp = smtplib.SMTP(self.HOST1, self.Port1)
+            self.TO = self.TO_TO
 
-        self.status_code, self.response = self.smtp.ehlo()
+            self.MESSAGE_NOA = (f'{self.amount} Mails got sucesfuly Bombarded to {self.target}!')
 
-        self.status_code, self.response = self.smtp.starttls()
+            self.smtp = smtplib.SMTP(self.HOST1, self.Port1)
 
-        self.status_code, self.response = self.smtp.login(self.FROM, self.PWD)
+            self.status_code, self.response = self.smtp.ehlo()
 
-        self.smtp.sendmail(self.FROM,self.TO,self.MESSAGE_NOA)
-        self.smtp.sendmail(self.FROM,self.TO1,self.MESSAGE_NOA)
+            self.status_code, self.response = self.smtp.starttls()
 
-        self.smtp.quit()
+            self.status_code, self.response = self.smtp.login(self.FROM, self.PWD)
+
+            self.smtp.sendmail(self.FROM,self.TO,self.MESSAGE_NOA)
+
+            self.smtp.quit()
 
         #DEBUG END
 
