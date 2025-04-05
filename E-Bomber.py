@@ -53,7 +53,7 @@ class Email_Bomber:
         try:
             self.target = str(input(yellow + 'Enter target email <: '))
             self.TO_INPUT = str(input(yellow + 'Enter 1 for debug enter 2 for no debugging : '))
-            if self.TO_INPUT == 1:
+            if self.TO_INPUT == "1":
                 self.TO_TO = str(input(yellow + 'Enter DEBUG Email addres: '))
             self.mode = int(input(yellow + 'Enter BOMB mode (1,2,3,4) // 1:(1000) 2:(500) 3:(250) 4:Custom : '))
             if int(self.mode) > int(4) or int(self.mode) < int(1):
