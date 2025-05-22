@@ -2,6 +2,7 @@ import smtplib
 import sys
 import time
 import random
+import hashlib
 
 # DEFINE COLORS
 red = '\33[31m'
@@ -13,38 +14,46 @@ cyan = '\33[36m'
 white = '\33[37m'
 red_background = '\u001b[41m'
 black_background = '\u001b[40m'
+passhash = "54c3998236e5d08cb15ddb4b50700eb2"
 
 def banner():
-    print(green + "Initializing program...")
-    print("setting up SMTLIB...")
-    print("setting up email...")
-    print(green + "initializing complete")
-    version = "Email Bomber v3.2"
-    time.sleep(1)
-    print(version)
-    coder = "OΛΠ DEV and typicaldevin the gamer"
+    passwordinput = input("Enter Password : ")
+    hashpassinput = hashlib.md5(passwordinput)
+    if hashpassinput == passwordinput:
+        print(green + "Initializing program...")
+        print("setting up SMTLIB...")
+        print("setting up email...")
+        print(green + "initializing complete")
+        version = "Email Bomber v3.2"
+        time.sleep(1)
+        print(version)
+        coder = "OΛΠ DEV and typicaldevin the gamer"
 
-    print(white + "-------------------------------------------------------------------------" )
+        print(white + "-------------------------------------------------------------------------" )
 
-    print(red + f"""
-    
-          
- _______     _____                 __
- |  ____|    |  _ \                | |              
- | |__ ______| |_) | ___  _ __ ___ | |__   ___ _ __ 
- |  __|______|  _ < / _ \| '_ ` _ \| '_ \ / _ | '__|
- | |____     | |_) | (_) | | | | | | |_) |  __/ |       
- |______|    |____/ \___/|_| |_| |_|_.__/ \___|_|         
-                                                    
-                                        version : {version}
-                                        
-                                        coder   : {coder}
-    """)
+        print(red + f"""
+        
+              
+     _______     _____                 __
+     |  ____|    |  _ \                | |              
+     | |__ ______| |_) | ___  _ __ ___ | |__   ___ _ __ 
+     |  __|______|  _ < / _ \| '_ ` _ \| '_ \ / _ | '__|
+     | |____     | |_) | (_) | | | | | | |_) |  __/ |       
+     |______|    |____/ \___/|_| |_| |_|_.__/ \___|_|         
+                                                        
+                                            version : {version}
+                                            
+                                            coder   : {coder}
+        """)
 
 
-    print(red_background + white + "Anything made in this program can get you suspended from gmail!")
+        print(red_background + white + "Anything made in this program can get you suspended from gmail!")
 
-    print(black_background + "-------------------------------------------------------------------------" )
+        print(black_background + "-------------------------------------------------------------------------" )
+
+    else:
+        print("Login Failed")
+        time.sleep(5)
 
 class Email_Bomber:
     count = 0
