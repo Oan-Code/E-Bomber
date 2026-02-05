@@ -14,12 +14,8 @@ cyan = '\33[36m'
 white = '\33[37m'
 red_background = '\u001b[41m'
 black_background = '\u001b[40m'
-passhash = "54c3998236e5d08cb15ddb4b50700eb2"
 
 def banner():
-    passwordinput = input("Enter Password : ")
-    hashpassinput = hashlib.md5(passwordinput)
-    if hashpassinput == passwordinput:
         print(green + "Initializing program...")
         print("setting up SMTLIB...")
         print("setting up email...")
@@ -50,10 +46,6 @@ def banner():
         print(red_background + white + "Anything made in this program can get you suspended from gmail!")
 
         print(black_background + "-------------------------------------------------------------------------" )
-
-    else:
-        print("Login Failed")
-        time.sleep(5)
 
 class Email_Bomber:
     count = 0
@@ -187,4 +179,5 @@ if __name__ == '__main__':
     bomb = Email_Bomber()
     bomb.bomb()
     bomb.email()
+
     bomb.attack()
