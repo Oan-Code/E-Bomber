@@ -179,5 +179,4 @@ if __name__ == '__main__':
     bomb = Email_Bomber()
     bomb.bomb()
     bomb.email()
-
     bomb.attack()
